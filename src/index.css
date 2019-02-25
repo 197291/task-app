@@ -12,3 +12,11 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
     monospace;
 }
+
+.pagination {
+  font-size: 24px;
+}
+
+.pagination .active a {
+  color: green;
+}

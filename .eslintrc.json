@@ -1,0 +1,54 @@
+{
+    "env": {
+        "browser": true,
+        "es6": true
+    },
+    "extends": "airbnb",
+    "globals": {
+        "Atomics": "readonly",
+        "SharedArrayBuffer": "readonly"
+    },
+    "parserOptions": {
+        "ecmaFeatures": {
+            "jsx": true
+        },
+        "ecmaVersion": 2018,
+        "sourceType": "module"
+    },
+    "plugins": [
+        "react"
+    ],
+    "rules": {
+      "no-param-reassign": ["error", { "props": false }],
+      "import/prefer-default-export": "off",
+      "import/extensions": "always",
+      "react/no-did-mount-set-state": "off",
+      "no-console": "off",
+      "padded-blocks":"off",
+      "class-methods-use-this":"off",
+      "prefer-template":"warn",
+      "one-var":"warn",
+      "import/order": "off",
+      "arrow-parens":"off",
+      "react/prop-types": "off",
+      "react/destructuring-assignment": "off",
+      "arrow-body-style": "off",
+      "react/sort-comp": "off",
+      "react/jsx-one-expression-per-line": "off",
+      "react/jsx-boolean-value": "off",
+      "react/jsx-wrap-multilines": "off",
+      "operator-linebreak":"off",
+      "no-unneeded-ternary": "off",
+      "jsx-a11y/label-has-for": "off",
+      "jsx-a11y/label-has-associated-control": "off",
+      "no-plusplus": "off",
+      "react/no-array-index-key": "off"
+    },
+    "settings": {
+      "import/resolver": {
+        "node": {
+          "paths": ["src"]
+        }
+      }
+    }
+}

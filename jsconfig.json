@@ -1,0 +1,9 @@
+{
+  "compilerOptions": {
+    "baseUrl": "src",
+    "outDir": "build/dist",
+  },
+  "exclude": [
+    "node_modules",
+  ]
+}
