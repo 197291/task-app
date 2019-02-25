@@ -142,7 +142,7 @@ class Tasks extends React.Component {
 const stateToProps = (state) => ({
   tasks: state.tasks.tasks,
   sortByStatus: state.tasks.sortByStatus,
-  sortByName: state.tasks.sortByEmail,
+  sortByName: state.tasks.sortByName,
   sortByEmail: state.tasks.sortByEmail,
   countTasks: state.tasks.countTasks,
   isLoggedIn: state.auth.isLoggedIn,

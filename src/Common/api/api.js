@@ -1,5 +1,6 @@
 import axios from 'axios';
 import md5 from 'md5';
+import strictUriEncode from 'strict-uri-encode';
 
 import { API_BASE_URL } from 'Common/constants';
 // import store from 'Common/store';
@@ -15,10 +16,7 @@ export class Api {
   }
 
   fixedEncodeURIComponent(str) {
-    return encodeURIComponent(str).replace(
-      /[!'()*]/g,
-      c => '%' + c.charCodeAt(0).toString(16),
-    );
+    return strictUriEncode(str);
   }
 
   createMD5Hash(str) {

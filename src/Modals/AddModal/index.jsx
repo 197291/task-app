@@ -41,7 +41,6 @@ class AddModal extends React.Component {
     const { text, username, email } = this.state;
 
     const formDataTask = ApiClient.tasks.createTask(text, username, email);
-    console.log(formDataTask);
     ApiClient.tasks.saveTask(formDataTask)
       .then(res => {
         if (res.status === 'error') {

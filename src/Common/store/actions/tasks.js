@@ -1,6 +1,7 @@
 export const TasksActionTypes = {
   GET_ALL_TASKS_SUCCESS: '[PostsActionTypes] GET_ALL_TASKS_SUCCESS',
   ADD_TASK: '[PostsActionTypes] ADD_TASK',
+  UPDATE_TASK: '[PostsActionTypes] UPDATE_TASK',
   EDIT_TASK_SUCCESS: '[PostsActionTypes] EDIT_TASK_SUCCESS',
   SET_DIRECTION: '[PostsActionTypes] SET_DIRECTION',
   SHOW_ALERT: '[PostsActionTypes] SHOW_ALERT',
@@ -17,6 +18,13 @@ export function setTasks(tasks) {
 export function addTask(task) {
   return {
     type: TasksActionTypes.ADD_TASK,
+    payload: task,
+  };
+}
+
+export function updateTask(task) {
+  return {
+    type: TasksActionTypes.UPDATE_TASK,
     payload: task,
   };
 }

@@ -50,6 +50,16 @@ export default class Tasks extends Api {
     return form;
   }
 
+  createEditedTask(statusValue, textValue, tokenValue, signature) {
+    const form = this.createFormData();
+
+    form.append('status', statusValue);
+    form.append('text', textValue);
+    form.append('token', tokenValue);
+    form.append('signature', signature);
+    return form;
+  }
+
   getAllEncodedFields(text, status) {
     return {
       textValue: this.fixedEncodeURIComponent(text),
@@ -61,41 +71,24 @@ export default class Tasks extends Api {
     };
   }
 
-  saveEditedTask(text, status, id) {
-    const values = this.getAllEncodedFields(text, status);
-    console.log('values', values);
-    // const codedText = this.fixedEncodeURIComponent(text);
-    // const codedStatus = this.fixedEncodeURIComponent(status);
-    // const codedToken = this.fixedEncodeURIComponent(API_TOKEN);
-    // const codedText = this.fixedEncodeURIComponent(`&text=${text}`);
-    // const codedStatus = this.fixedEncodeURIComponent(`&status=${status}`);
-    // const codedToken = this.fixedEncodeURIComponent(`&token=${API_TOKEN}`);
-    // const signature = this.createMD5Hash(codedText + codedStatus + codedToken);
-    // console.log('codedText + codedStatus + codedToken', codedText + codedStatus + codedToken);
-    // console.log('codedText, codedStatus, codedToken, signature', codedText, codedStatus, codedToken, signature);
-    // const url = codedText + codedStatus + codedToken + `&signature=${signature}`;
-    const urlRequest = `
-      &${values.status}=${values.statusValue}
-      &${values.text}=${values.textValue}
-      &${values.token}=${values.tokenValue}
-    `;
-    const signature = this.createMD5Hash(urlRequest);
+  createSignature(Url) {
+    return this.createMD5Hash(Url);
+  }
+
+  saveEditedTask(textOrigin, statusOrigin, id) {
+    const {
+      statusValue, status, text, textValue, token, tokenValue,
+    } = this.getAllEncodedFields(textOrigin, statusOrigin);
+
+    const url = `${status}=${statusValue}&${text}=${textValue}&${token}=${tokenValue}`;
+    const signature = this.createSignature(url);
+
+    const formData = this.createEditedTask(statusOrigin, textOrigin, tokenValue, signature);
+
     return this.request({
-      url: API.apiUrl(`?developer=${DEVELOPER_NAME}/edit/${id}`),
-      // url: API.apiUrl(`?developer=${DEVELOPER_NAME}/edit/${id}${url}`),
+      url: API.apiUrl(`edit/${id}?developer=${DEVELOPER_NAME}`),
       method: 'post',
-      data: {
-        text,
-        status,
-        signature,
-        token: API_TOKEN,
-      },
-      // data: {
-      //   text: codedText,
-      //   status: codedStatus,
-      //   token: codedToken,
-      //   signature,
-      // },
+      data: formData,
     });
   }
 

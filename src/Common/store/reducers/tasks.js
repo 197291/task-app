@@ -16,7 +16,6 @@ export default (state = initialAuthState, action) => {
   return produce(state, (draft) => {
     switch (type) {
       case TasksActionTypes.GET_ALL_TASKS_SUCCESS:
-        console.log('payload.message.tasks', payload.message.tasks);
         draft.tasks = [];
         draft.tasks = payload.message.tasks;
         draft.countTasks = payload.message.total_task_count;
@@ -24,6 +23,9 @@ export default (state = initialAuthState, action) => {
       case TasksActionTypes.ADD_TASK:
         draft.tasks.unshift(payload);
         draft.countTasks++;
+        break;
+      case TasksActionTypes.UPDATE_TASK:
+        draft.tasks = draft.tasks.map((task) => task.id === payload.id ? payload : task);
         break;
       case TasksActionTypes.SET_DIRECTION:
         draft[payload.name] = payload.direction;

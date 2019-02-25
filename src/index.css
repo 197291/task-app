@@ -15,8 +15,17 @@ code {
 
 .pagination {
   font-size: 24px;
+  width: 250px;
+  text-align: center;
+  margin: auto;
+  display: flex;
+  justify-content: center;
 }
 
 .pagination .active a {
-  color: green;
+  color: #007bff;
+}
+.pagination a {
+  color: black;
+  padding: 0 5px;
 }

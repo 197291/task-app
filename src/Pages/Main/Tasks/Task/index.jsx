@@ -6,20 +6,11 @@ export default class Task extends React.Component {
 
   constructor(props) {
     super(props);
-    this.state = {
-      isDone: !!props.task.status,
-    };
     this.openEditModal = this.openEditModal.bind(this);
-    this.handleChangeStatus = this.handleChangeStatus.bind(this);
   }
 
   openEditModal() {
     this.props.openEditModal(this.props.task);
-  }
-
-  handleChangeStatus(e) {
-    e.preventDefault();
-    console.log(e.checked);
   }
 
   get renderContent() {
@@ -29,13 +20,13 @@ export default class Task extends React.Component {
       <div>
         <div>
           <label>
-            <input readOnly checked={this.state.isDone} type="checkbox" />
+            <input readOnly checked={!!task.status} type="checkbox" />
             Task is done
           </label>
         </div>
-        <div>{task.username}</div>
-        <div>{task.email}</div>
-        <div>{task.text}</div>
+        <div>[Username]: {task.username}</div>
+        <div>[Email]: {task.email}</div>
+        <div>[Text]: {task.text}</div>
         {isAdminMode && <div><Button onClick={this.openEditModal}>Edit task</Button></div>}
       </div>
     );
