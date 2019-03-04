@@ -5,18 +5,14 @@ import Pagination from 'react-js-pagination';
 import Button from 'react-bootstrap/Button';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
-import Container from 'react-bootstrap/Container';
 
 import * as actions from 'Common/store/actions';
 import Task from './Task';
 import { ApiClient } from 'Common/api';
 import EditTaskModal from 'Modals/EditTaskModal';
+import { SortType, mapSort } from 'Common/constants';
 
-const mapSort = {
-  status: 'sortByStatus',
-  name: 'sortByName',
-  email: 'sortByEmail',
-};
+import './index.scss';
 
 class Tasks extends React.Component {
 
@@ -88,39 +84,39 @@ class Tasks extends React.Component {
   sortByName() {
     const { sortByName } = this.props;
     const payload = this.sortPayload(sortByName);
-    this.setSortDirectionByField('name', payload);
+    this.setSortDirectionByField(SortType.name, payload);
   }
 
   sortByEmail() {
     const { sortByEmail } = this.props;
     const payload = this.sortPayload(sortByEmail);
-    this.setSortDirectionByField('email', payload);
+    this.setSortDirectionByField(SortType.email, payload);
   }
 
   sortByStatus() {
     const { sortByStatus } = this.props;
     const payload = this.sortPayload(sortByStatus);
-    this.setSortDirectionByField('status', payload);
+    this.setSortDirectionByField(SortType.status, payload);
   }
 
   render() {
     const { countTasks, isLoggedIn } = this.props;
     return (
       <>
-        <Container style={{ marginTop: 20, marginBottom: 20 }}>
+        <div className="SortWrapper">
           <Row>
-            <Col>
+            <Col md={{ span: 2 }}>
               <Button onClick={this.sortByName}> Sort by name </Button>
             </Col>
-            <Col>
+            <Col md={{ span: 2 }}>
               <Button onClick={this.sortByEmail}> Sort by email </Button>
             </Col>
             {isLoggedIn &&
-            <Col>
+            <Col md={{ span: 2 }}>
               <Button onClick={this.sortByStatus}> Sort by status </Button>
             </Col>}
           </Row>
-        </Container>
+        </div>
         <ListGroup>
           {this.tasks}
         </ListGroup>
