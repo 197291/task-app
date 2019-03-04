@@ -42,22 +42,29 @@ export default class Tasks extends Api {
       .catch(err => console.error(err));
   }
 
-  createTask(text, username, email) {
+  createFormDataByParams(params) {
     const form = this.createFormData();
-    form.append('text', text);
-    form.append('username', username);
-    form.append('email', email);
+    Object.keys(params).forEach(key => {
+      form.append(key, params[key]);
+    });
     return form;
   }
 
-  createEditedTask(statusValue, textValue, tokenValue, signature) {
-    const form = this.createFormData();
+  createTask(text, username, email) {
+    return this.createFormDataByParams({
+      text,
+      username,
+      email,
+    });
+  }
 
-    form.append('status', statusValue);
-    form.append('text', textValue);
-    form.append('token', tokenValue);
-    form.append('signature', signature);
-    return form;
+  createEditedTask(statusValue, textValue, tokenValue, signature) {
+    return this.createFormDataByParams({
+      statusValue,
+      textValue,
+      tokenValue,
+      signature,
+    });
   }
 
   getAllEncodedFields(text, status) {
