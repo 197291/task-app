@@ -2,6 +2,8 @@ import React from 'react';
 import ListGroup from 'react-bootstrap/ListGroup';
 import Button from 'react-bootstrap/Button';
 
+import './index.scss';
+
 export default class Task extends React.Component {
 
   constructor(props) {
@@ -17,9 +19,9 @@ export default class Task extends React.Component {
     const { isAdminMode, task } = this.props;
 
     return (
-      <div>
+      <div className="TaskRow">
         <div>
-          <label>
+          <label className="TaskRow-label">
             <input readOnly checked={!!task.status} type="checkbox" />
             Task is done
           </label>
