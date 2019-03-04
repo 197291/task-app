@@ -29,3 +29,7 @@ code {
   color: black;
   padding: 0 5px;
 }
+main {
+  max-width: 960px;
+  margin: auto;
+}

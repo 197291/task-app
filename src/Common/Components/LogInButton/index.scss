@@ -1,6 +1,7 @@
 .LoginButton {
   display: flex;
   align-items: center;
+  justify-content: flex-end;
   &-name {
     margin-right: 10px;
   }

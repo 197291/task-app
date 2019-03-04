@@ -13,6 +13,8 @@ import Tasks from './Tasks';
 import LoginButton from 'Common/Components/LogInButton';
 import AddModal from 'Modals/AddModal';
 
+import './index.scss';
+
 class Main extends React.Component {
 
   constructor(props) {
@@ -50,16 +52,20 @@ class Main extends React.Component {
         <header>
           <Container>
             <Row>
+              <Col md={{ span: 2, offset: 10 }}>
+                <LoginButton />
+              </Col>
+            </Row>
+            <Row>
               <Col>
                 <Button onClick={this.showModalAddTask}> Add Task </Button>
-              </Col>
-              <Col>
-                <LoginButton />
               </Col>
             </Row>
           </Container>
         </header>
-        <Tasks />
+        <Container>
+          <Tasks />
+        </Container>
         {this.state.showModal && <AddModal closeModal={this.hideModalAddTask} />}
         {this.props.showAlert &&
         <Alert variant="danger">

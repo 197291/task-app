@@ -46,7 +46,7 @@ class LoginButton extends React.Component {
     return (
       <div className="LoginButton">
         {user && <div className="LoginButton-name">Hello, {user.name}</div>}
-        <Button onClick={!user ? this.showLoginModal : this.logOut}>{user ? 'Sign Out' : 'Sign In'}</Button>
+        <Button variant="success" onClick={!user ? this.showLoginModal : this.logOut}>{user ? 'Sign Out' : 'Sign In'}</Button>
         { this.state.isOpen && <LoginModal closeModal={this.hideLoginModal} handleSuccessSignIn={this.handleSuccessSignIn} />}
       </div>
     );
