@@ -29,7 +29,7 @@ export default class Task extends React.Component {
         <div>[Username]: {task.username}</div>
         <div>[Email]: {task.email}</div>
         <div>[Text]: {task.text}</div>
-        {isAdminMode && <div><Button onClick={this.openEditModal}>Edit task</Button></div>}
+        {isAdminMode && <div className="TaskRow-edit-btn"><Button variant="info" onClick={this.openEditModal}>Edit task</Button></div>}
       </div>
     );
   }
